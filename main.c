@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
-#include <opencv2/opencv.hpp>
+#include "opencv2/opencv.hpp"
 
 
-typedef struct Quadrant {
+typedef struct Quadrant
+{
     Rect bbox;
     int depth;
     bool leaf;
@@ -45,7 +46,7 @@ void split_quadrant(Quadrant *quad, Mat image)
 
 int main(){
 
-
+    printf("Hello World\n");
 
     return 0;
 }

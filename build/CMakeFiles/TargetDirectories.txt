@@ -1,0 +1,3 @@
+/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/build/CMakeFiles/MyProject.dir
+/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/build/CMakeFiles/edit_cache.dir
+/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/build/CMakeFiles/rebuild_cache.dir
