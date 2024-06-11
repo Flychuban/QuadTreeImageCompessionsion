@@ -40,6 +40,35 @@ double weighted_average(int* hist, int size){
     return error; // Difference between the average and the actual values -> calculate the detail
 }
 
+// Function to calculate the detail of a region based on the histogram of the image
+double get_detail(const Mat& image){
+    int histSize = 256;
+    float range[] = {0, 256};
+    const float* histRange = {range};
+    bool uniform = true; // all bins in the histogram will have the same size
+    bool accumulate = false; // compute the histogram from scratch ignoring previously computed histogram
+
+    Mat r_hist, g_hist, b_hist; // Histograms for the 3 channels
+
+    // Calculate the histogram for each channel
+    vector<Mat> bgr_planes; // Planes for the 3 channels
+
+    split(image, bgr_planes); // Split the image into the 3 channels
+
+    // Calculate the histogram for each channel
+    calcHist(&bgr_planes[0], 1, 0, Mat(), b_hist, 1, &histSize, &histRange, uniform, accumulate);
+    calcHist(&bgr_planes[1], 1, 0, Mat(), g_hist, 1, &histSize, &histRange, uniform, accumulate);
+    calcHist(&bgr_planes[2], 1, 0, Mat(), r_hist, 1, &histSize, &histRange, uniform, accumulate);
+
+    // Calculate the detail for each channel
+    double red_detail = weighted_average((int *)r_hist.data, histSize);
+    double green_detail = weighted_average((int *)g_hist.data, histSize);
+    double blue_detail = weighted_average((int *)b_hist.data, histSize);
+
+    // Combine the details of the 3 channels
+    return red_detail * 0.2989 + green_detail * 0.5870 + blue_detail * 0.1140; // Luminance of the image -> grayscale to rgb
+}
+
 class Quadrant{
 public:
     Rect bbox;
@@ -58,4 +87,13 @@ public:
         color = average_color(region);
     }
 
-}
+    void split_region(const Mat&){
+        int middle_x = bbox.x + bbox.width / 2;
+        int middle_y = bbox.y + bbox.height / 2;
+
+        children[0] = Quadrant(image, Rect(bbox.x, bbox.y, bbox.width / 2, bbox.height / 2), depth + 1); // Top-left
+        children[1] = Quadrant(image, Rect(middle_x, bbox.y, bbox.width / 2, bbox.height / 2), depth + 1); // Top-right
+        children[2] = Quadrant(image, Rect(bbox.x, middle_y, bbox.width / 2, bbox.height / 2), depth + 1); // Bottom-left
+        children[3] = Quadrant(image, Rect(middle_x, middle_y, bbox.width / 2, bbox.height / 2), depth + 1); // Bottom-right
+    }
+};
