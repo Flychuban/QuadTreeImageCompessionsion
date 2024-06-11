@@ -97,3 +97,31 @@ public:
         children[3] = Quadrant(image, Rect(middle_x, middle_y, bbox.width / 2, bbox.height / 2), depth + 1); // Bottom-right
     }
 };
+
+class QuadTree{
+public:
+    Quadrant* root;
+    int max_depth;
+
+    QuadTree(const Mat& image){
+        max_depth = 0;
+        root = new Quadrant(image, Rect(0, 0, image.cols, image.rows), 0);
+    }
+
+    // Recursively build the quadtree by splitting the regions
+    void build(Quadrant* quad, const Mat& iamge){
+        if (quad->depth >= MAX_DEPTH || quad->detail < DETAIL_THRESHOLD){ // Stop splitting the region
+            if (quad->depth > max_depth){
+                max_depth = quad->depth;
+            }
+            quad->is_leaf = true;
+            return; 
+        }
+        else{
+            quad->split_region(image);
+            for (int i = 0; i < 4; i++){
+                build(&quad->children[i], image);
+            }
+        }
+    }
+};
