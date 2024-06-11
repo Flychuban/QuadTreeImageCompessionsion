@@ -129,29 +129,29 @@ MyProject/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/build
 .PHONY : MyProject/fast
 
-main2.o: main2.cpp.o
-.PHONY : main2.o
+quadtree_compression.o: quadtree_compression.cpp.o
+.PHONY : quadtree_compression.o
 
 # target to build an object file
-main2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/main2.cpp.o
-.PHONY : main2.cpp.o
+quadtree_compression.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/quadtree_compression.cpp.o
+.PHONY : quadtree_compression.cpp.o
 
-main2.i: main2.cpp.i
-.PHONY : main2.i
+quadtree_compression.i: quadtree_compression.cpp.i
+.PHONY : quadtree_compression.i
 
 # target to preprocess a source file
-main2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/main2.cpp.i
-.PHONY : main2.cpp.i
+quadtree_compression.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/quadtree_compression.cpp.i
+.PHONY : quadtree_compression.cpp.i
 
-main2.s: main2.cpp.s
-.PHONY : main2.s
+quadtree_compression.s: quadtree_compression.cpp.s
+.PHONY : quadtree_compression.s
 
 # target to generate assembly for a file
-main2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/main2.cpp.s
-.PHONY : main2.cpp.s
+quadtree_compression.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/quadtree_compression.cpp.s
+.PHONY : quadtree_compression.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... MyProject"
-	@echo "... main2.o"
-	@echo "... main2.i"
-	@echo "... main2.s"
+	@echo "... quadtree_compression.o"
+	@echo "... quadtree_compression.i"
+	@echo "... quadtree_compression.s"
 .PHONY : help
 
 

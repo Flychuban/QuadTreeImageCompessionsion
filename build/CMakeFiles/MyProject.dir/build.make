@@ -69,28 +69,28 @@ include CMakeFiles/MyProject.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/MyProject.dir/flags.make
 
-CMakeFiles/MyProject.dir/main2.cpp.o: CMakeFiles/MyProject.dir/flags.make
-CMakeFiles/MyProject.dir/main2.cpp.o: /Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/main2.cpp
-CMakeFiles/MyProject.dir/main2.cpp.o: CMakeFiles/MyProject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MyProject.dir/main2.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyProject.dir/main2.cpp.o -MF CMakeFiles/MyProject.dir/main2.cpp.o.d -o CMakeFiles/MyProject.dir/main2.cpp.o -c /Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/main2.cpp
+CMakeFiles/MyProject.dir/quadtree_compression.cpp.o: CMakeFiles/MyProject.dir/flags.make
+CMakeFiles/MyProject.dir/quadtree_compression.cpp.o: /Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/quadtree_compression.cpp
+CMakeFiles/MyProject.dir/quadtree_compression.cpp.o: CMakeFiles/MyProject.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MyProject.dir/quadtree_compression.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyProject.dir/quadtree_compression.cpp.o -MF CMakeFiles/MyProject.dir/quadtree_compression.cpp.o.d -o CMakeFiles/MyProject.dir/quadtree_compression.cpp.o -c /Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/quadtree_compression.cpp
 
-CMakeFiles/MyProject.dir/main2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyProject.dir/main2.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/main2.cpp > CMakeFiles/MyProject.dir/main2.cpp.i
+CMakeFiles/MyProject.dir/quadtree_compression.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyProject.dir/quadtree_compression.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/quadtree_compression.cpp > CMakeFiles/MyProject.dir/quadtree_compression.cpp.i
 
-CMakeFiles/MyProject.dir/main2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyProject.dir/main2.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/main2.cpp -o CMakeFiles/MyProject.dir/main2.cpp.s
+CMakeFiles/MyProject.dir/quadtree_compression.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyProject.dir/quadtree_compression.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/quadtree_compression.cpp -o CMakeFiles/MyProject.dir/quadtree_compression.cpp.s
 
 # Object files for target MyProject
 MyProject_OBJECTS = \
-"CMakeFiles/MyProject.dir/main2.cpp.o"
+"CMakeFiles/MyProject.dir/quadtree_compression.cpp.o"
 
 # External object files for target MyProject
 MyProject_EXTERNAL_OBJECTS =
 
-MyProject: CMakeFiles/MyProject.dir/main2.cpp.o
+MyProject: CMakeFiles/MyProject.dir/quadtree_compression.cpp.o
 MyProject: CMakeFiles/MyProject.dir/build.make
 MyProject: /opt/homebrew/lib/libopencv_gapi.4.9.0.dylib
 MyProject: /opt/homebrew/lib/libopencv_stitching.4.9.0.dylib

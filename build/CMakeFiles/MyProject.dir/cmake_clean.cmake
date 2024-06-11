@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/MyProject.dir/main2.cpp.o"
-  "CMakeFiles/MyProject.dir/main2.cpp.o.d"
+  "CMakeFiles/MyProject.dir/quadtree_compression.cpp.o"
+  "CMakeFiles/MyProject.dir/quadtree_compression.cpp.o.d"
   "MyProject"
   "MyProject.pdb"
 )

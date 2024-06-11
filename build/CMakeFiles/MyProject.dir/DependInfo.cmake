@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/main2.cpp" "CMakeFiles/MyProject.dir/main2.cpp.o" "gcc" "CMakeFiles/MyProject.dir/main2.cpp.o.d"
+  "/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/quadtree_compression.cpp" "CMakeFiles/MyProject.dir/quadtree_compression.cpp.o" "gcc" "CMakeFiles/MyProject.dir/quadtree_compression.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
