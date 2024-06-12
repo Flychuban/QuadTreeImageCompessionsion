@@ -2,9 +2,9 @@
 #include <vector>
 #include <opencv2/opencv.hpp>
 
-#define MAX_DEPTH 8
-#define DETAIL_THRESHOLD 13
-#define SIZE_MULT 1
+#define MAX_DEPTH 13
+#define DETAIL_THRESHOLD 10
+#define SIZE_MULT 4
 
 using namespace std;
 using namespace cv;
@@ -17,73 +17,89 @@ Vec3b average_color(const Mat& image){
     return Vec3b((uchar)average_color[0], (uchar)average_color[1], (uchar)average_color[2]); // 8-bit unsigned integer - BGR channels
 }
 
-// Function to calculate the weighted average of a histogram -> calculate the detail
-double weighted_average(const Mat &hist)
+// This is for computing detail using histogram -> not used in this implementation because the Canny edge detection is more accurate
+
+// // Function to calculate the weighted average of a histogram -> calculate the detail
+// double weighted_average(const Mat &hist)
+// {
+//     int total = 0;
+//     double value = 0;
+//     double error = 0;
+
+//     for (int i = 0; i < hist.rows; i++)
+//     {
+//         total += hist.at<int>(i); // using at() function to access the histogram values from Mat object -> OpenCV
+//         value += i * hist.at<int>(i);
+//     }
+
+//     if (total > 0)
+//     {
+//         value /= total;
+//         for (int i = 0; i < hist.rows; i++)
+//         {
+//             error += hist.at<int>(i) * (i - value) * (i - value);
+//         }
+//         error = sqrt(error / total);
+//     }
+
+//     return error; // Difference between the average and the actual values -> calculate the detail
+// }
+
+// // Function to calculate the detail of a region based on the histogram of the image
+// double get_detail(const Mat& image){
+//     int histSize = 256;
+//     float range[] = {0, 256};
+//     const float* histRange = {range};
+//     bool uniform = true; // all bins in the histogram will have the same size
+//     bool accumulate = false; // compute the histogram from scratch ignoring previously computed histogram
+
+//     Mat r_hist, g_hist, b_hist; // Histograms for the 3 channels
+
+//     // Calculate the histogram for each channel
+//     vector<Mat> bgr_planes; // Planes for the 3 channels
+
+//     split(image, bgr_planes); // Split the image into the 3 channels
+
+//     // Check if the image was correctly split
+//     if (bgr_planes.size() != 3)
+//     {
+//         cerr << "Error: Image was not correctly split into 3 channels" << endl;
+//         return -1;
+//     }
+
+//     // Calculate the histogram for each channel
+//     calcHist(&bgr_planes[0], 1, 0, Mat(), b_hist, 1, &histSize, &histRange, uniform, accumulate);
+//     calcHist(&bgr_planes[1], 1, 0, Mat(), g_hist, 1, &histSize, &histRange, uniform, accumulate);
+//     calcHist(&bgr_planes[2], 1, 0, Mat(), r_hist, 1, &histSize, &histRange, uniform, accumulate);
+
+//     // Check if histograms were correctly calculated
+//     if (b_hist.empty() || g_hist.empty() || r_hist.empty())
+//     {
+//         cerr << "Error: Histogram calculation failed" << endl;
+//         return -1;
+//     }
+
+//     // Calculate the detail for each channel
+//     double red_detail = weighted_average(r_hist);
+//     double green_detail = weighted_average(g_hist);
+//     double blue_detail = weighted_average(b_hist);
+
+//     // Combine the details of the 3 channels
+//     return red_detail * 0.2989 + green_detail * 0.5870 + blue_detail * 0.1140; // Luminance of the image -> grayscale to rgb
+// }
+
+// Function to calculate the detail of a region using Canny edge detection
+double get_detail(const Mat &image)
 {
-    int total = 0;
-    double value = 0;
-    double error = 0;
-
-    for (int i = 0; i < hist.rows; i++)
-    {
-        total += hist.at<int>(i); // using at() function to access the histogram values from Mat object -> OpenCV
-        value += i * hist.at<int>(i);
-    }
-
-    if (total > 0)
-    {
-        value /= total;
-        for (int i = 0; i < hist.rows; i++)
-        {
-            error += hist.at<int>(i) * (i - value) * (i - value);
-        }
-        error = sqrt(error / total);
-    }
-
-    return error; // Difference between the average and the actual values -> calculate the detail
-}
-
-// Function to calculate the detail of a region based on the histogram of the image
-double get_detail(const Mat& image){
-    int histSize = 256;
-    float range[] = {0, 256};
-    const float* histRange = {range};
-    bool uniform = true; // all bins in the histogram will have the same size
-    bool accumulate = false; // compute the histogram from scratch ignoring previously computed histogram
-
-    Mat r_hist, g_hist, b_hist; // Histograms for the 3 channels
-
-    // Calculate the histogram for each channel
-    vector<Mat> bgr_planes; // Planes for the 3 channels
-
-    split(image, bgr_planes); // Split the image into the 3 channels
-
-    // Check if the image was correctly split
-    if (bgr_planes.size() != 3)
-    {
-        cerr << "Error: Image was not correctly split into 3 channels" << endl;
-        return -1;
-    }
-
-    // Calculate the histogram for each channel
-    calcHist(&bgr_planes[0], 1, 0, Mat(), b_hist, 1, &histSize, &histRange, uniform, accumulate);
-    calcHist(&bgr_planes[1], 1, 0, Mat(), g_hist, 1, &histSize, &histRange, uniform, accumulate);
-    calcHist(&bgr_planes[2], 1, 0, Mat(), r_hist, 1, &histSize, &histRange, uniform, accumulate);
-
-    // Check if histograms were correctly calculated
-    if (b_hist.empty() || g_hist.empty() || r_hist.empty())
-    {
-        cerr << "Error: Histogram calculation failed" << endl;
-        return -1;
-    }
-
-    // Calculate the detail for each channel
-    double red_detail = weighted_average(r_hist);
-    double green_detail = weighted_average(g_hist);
-    double blue_detail = weighted_average(b_hist);
-
-    // Combine the details of the 3 channels
-    return red_detail * 0.2989 + green_detail * 0.5870 + blue_detail * 0.1140; // Luminance of the image -> grayscale to rgb
+    Mat gray, edges;
+    // Convert image to grayscale
+    cvtColor(image, gray, COLOR_BGR2GRAY);
+    // Apply Canny edge detection
+    Canny(gray, edges, 50, 150);
+    // Compute the number of edge pixels
+    double edge_pixels = countNonZero(edges);
+    // Return the number of edge pixels as an estimate of detail
+    return edge_pixels;
 }
 
 class Quadrant{
@@ -157,7 +173,7 @@ public:
 
     // Recursively build the quadtree by splitting the regions
     void build(Quadrant* quad, const Mat& image){
-        if (quad->depth >= MAX_DEPTH || quad->detail < DETAIL_THRESHOLD){ // Stop splitting the region
+        if (quad->depth >= MAX_DEPTH || quad->detail <= DETAIL_THRESHOLD){ // Stop splitting the region
             if (quad->depth > this->max_depth){
                 this->max_depth = quad->depth;
             }
@@ -207,7 +223,7 @@ public:
 int main(){
     cout << "QuadTree Image Compression" << endl;
     // Load image
-    const char *image_path = "/Users/flychuban/Documents/img_compression_test1.jpeg";
+    const char *image_path = "/Users/flychuban/Documents/img_compression_test3.webp";
     Mat image = imread(image_path, IMREAD_COLOR);
     if (image.empty())
     {
@@ -226,9 +242,9 @@ int main(){
     cout << "Max depth: " << quadtree.max_depth << endl;
 
     // Create image with custom depth
-    int depth = 7;
-    Mat result_image = quadtree.create_image(depth, false);
-    imwrite("/Users/flychuban/Documents/img_compression_test1_result.jpeg", result_image);
+    int depth = 13;
+    Mat result_image = quadtree.create_image(depth, true);
+    imwrite("/Users/flychuban/Documents/img_compression_test3_result.webp", result_image);
 
     return 0;
 }
