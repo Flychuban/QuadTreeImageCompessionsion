@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <opencv2/opencv.hpp>
+#include <cstdlib> // For system()
 
 #define MAX_DEPTH 13
 #define DETAIL_THRESHOLD 10
@@ -241,13 +242,20 @@ int main(){
     // Iterate through the quadtree and print the depth of each quadrant
     cout << "Max depth: " << quadtree.max_depth << endl;
 
+    string image_folder = "/Users/flychuban/Documents/compression_results/";
+    string output_gif_path = "/Users/flychuban/Documents/compression_results/compression_stages.gif";
 
     for (int depth = 0; depth <= quadtree.max_depth; ++depth)
     {
         Mat result_image = quadtree.create_image(depth, true);
-        string filename = "/Users/flychuban/Documents/compression_results/result_image_depth_" + to_string(depth) + ".jpg";
+        string filename = image_folder + "result_image_depth_" + to_string(depth) + ".jpg";
         imwrite(filename, result_image);
     }
 
+    // Call Python script to create the GIF
+    string python_path = "/Users/flychuban/miniconda3/bin/python";
+    string command = python_path + " ../convert_images_to_gif.py " + image_folder + " " + output_gif_path + " " + to_string(quadtree.max_depth);
+    cout << "Creating GIF with command: " << command << endl;
+    system(command.c_str());
     return 0;
 }
