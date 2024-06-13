@@ -223,7 +223,7 @@ public:
 int main(){
     cout << "QuadTree Image Compression" << endl;
     // Load image
-    const char *image_path = "/Users/flychuban/Documents/img_compression_test3.webp";
+    const char *image_path = "/Users/flychuban/Documents/img_compression_test1.jpeg";
     Mat image = imread(image_path, IMREAD_COLOR);
     if (image.empty())
     {
@@ -241,10 +241,13 @@ int main(){
     // Iterate through the quadtree and print the depth of each quadrant
     cout << "Max depth: " << quadtree.max_depth << endl;
 
-    // Create image with custom depth
-    int depth = 13;
-    Mat result_image = quadtree.create_image(depth, true);
-    imwrite("/Users/flychuban/Documents/img_compression_test3_result.webp", result_image);
+
+    for (int depth = 0; depth <= quadtree.max_depth; ++depth)
+    {
+        Mat result_image = quadtree.create_image(depth, true);
+        string filename = "/Users/flychuban/Documents/compression_results/result_image_depth_" + to_string(depth) + ".jpg";
+        imwrite(filename, result_image);
+    }
 
     return 0;
 }
