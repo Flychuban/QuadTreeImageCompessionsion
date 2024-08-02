@@ -18,22 +18,22 @@ This project will be continued with the development of a responsive website, all
 - **Cross-Platform**: Developed using C++ and Python for versatility and performance.
 
 ## Demonstration
-- **Input image
+- **Input Image**
 ![image info](./test_images/img_compression_test1.jpeg)
 
-- **Output image
+- **Output Image**
 ![image info](./compression_results/result_image_depth_10.jpg)
 
-- **Created GIF
+- **Created GIF**
 <img src="./compression_results/compression_stages.gif" alt="Created GIF" loop=infinite/>
 
-- **Input image
+- **Input Image**
 ![image info](./test_images/img_compression_test3.webp)
 
-- **Output image
+- **Output Image**
 ![image info](./compression_results/result2_image_depth_11.jpg)
 
-- **Created GIF
+- **Created GIF**
 <img src="./compression_results/compression2_stages.gif" alt="Created GIF" loop=infinite/>
 
 
