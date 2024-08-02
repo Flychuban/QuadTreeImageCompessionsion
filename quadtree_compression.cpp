@@ -153,7 +153,7 @@ public:
 int main(){
     cout << "QuadTree Image Compression" << endl;
     // Load image
-    const char *image_path = "/Users/flychuban/Documents/img_compression_test1.jpeg";
+    const char *image_path = "/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/test_images/img_compression_test3.webp";
     Mat image = imread(image_path, IMREAD_COLOR);
     if (image.empty())
     {
@@ -171,13 +171,13 @@ int main(){
     // Iterate through the quadtree and print the depth of each quadrant
     cout << "Max depth: " << quadtree.max_depth << endl;
 
-    string image_folder = "/Users/flychuban/Documents/compression_results/";
-    string output_gif_path = "/Users/flychuban/Documents/compression_results/compression_stages.gif";
+    string image_folder = "/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/compression_results/";
+    string output_gif_path = "/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/compression_results/compression2_stages.gif";
 
     for (int depth = 0; depth <= quadtree.max_depth; ++depth)
     {
         Mat result_image = quadtree.create_image(depth, true);
-        string filename = image_folder + "result_image_depth_" + to_string(depth) + ".jpg";
+        string filename = image_folder + "result2_image_depth_" + to_string(depth) + ".jpg";
         imwrite(filename, result_image);
     }
 

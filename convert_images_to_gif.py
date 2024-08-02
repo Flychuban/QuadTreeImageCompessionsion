@@ -5,7 +5,7 @@ import sys
 def create_gif(image_folder, output_path):
     images = []
     for depth in range(0, int(sys.argv[3]) + 1):  # Assuming the max depth is passed as a third argument
-        image_path = os.path.join(image_folder, f"result_image_depth_{depth}.jpg")
+        image_path = os.path.join(image_folder, f"result2_image_depth_{depth}.jpg")
         if os.path.exists(image_path):
             images.append(iio.imread(image_path))
         else:
