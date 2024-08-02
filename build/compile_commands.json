@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/build",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -isystem /opt/homebrew/Cellar/opencv/4.9.0_9/include/opencv4 -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/MyProject.dir/quadtree_compression.cpp.o -c /Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/quadtree_compression.cpp",
+  "file": "/Users/flychuban/Desktop/TUES_10_klas/School_10grade/ProizvodstvenaPraktika/QuadTreeImageCompression/quadtree_compression.cpp",
+  "output": "CMakeFiles/MyProject.dir/quadtree_compression.cpp.o"
+}
+]
